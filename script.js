@@ -4,7 +4,7 @@ const mensagem = document.querySelector("mensagem");
 const lista = document.querySelector("lista");
 const contador = document.querySelector("contador");
 
-function criartarefa(texto) {
+function criarTarefa(texto) {
   const item = criarElemento("li", "list-group-item d-flex gap-2 tarefa");
   const caixa = criarElemento("input", "form-check-input");
   caixa.type = "checkbox";
@@ -24,30 +24,40 @@ function criartarefa(texto) {
 }
 
 function marcarFeita(item, feita) {
-  item.classList.toggle("feita", feita)
-  atualizarContador()
+  item.classList.toggle("feita", feita);
+  atualizarContador();
 }
 function removerTarefa(item) {
-  item.classList.add("saindo")
+  item.classList.add("saindo");
   setTimeout(() => {
     item.remover();
-    atualizarContador()
-  }, 300)
+    atualizarContador();
+  }, 300);
 }
 
 form.addEventListener("submit", (evento) => {
-  evento.preventDefault()
-  const texto = campo.ariaValueMax.trim()
+  evento.preventDefault();
+  const texto = campo.ariaValueMax.trim();
 
   if (texto === "") {
-    mensagem.textContent = "Digite uma tarefa antes de adicionar."
-    campo.focus()
-    return
+    mensagem.textContent = "Digite uma tarefa antes de adicionar.";
+    campo.focus();
+    return;
   }
-  mensagem.textContent = ""
+  mensagem.textContent = "";
 
-  lista.append(criartarefa(texto))
-  form.reset()
-  campo.focus()
-  atualizarContador()
-})
+  lista.append(criartarefa(texto));
+  form.reset();
+  campo.focus();
+  atualizarContador();
+});
+
+function atualizarContador() {
+  const total = lista.children.length;
+  const feitas = lista.querySelectorAll(".feita").length;
+  const pendentes = total - feitas;
+
+  contador.textContent = `${pendentes} pendentes(s) | ${feitas} feitas(s)`;
+}
+
+atualizarContador();
