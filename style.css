@@ -1,0 +1,15 @@
+.tarefa  {
+  animation: aparecer 0.3s ease;
+  transition: opacity 0.3s, trasnform 0.3s;
+}
+
+.tarefa.saindo { opacity: 0; transform: translateX(40px);}
+.tarefa.feita span { text-decoration: line-through; opacity: 0,6;}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-10px);}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarefa {animation: none; transition: none;}
+}

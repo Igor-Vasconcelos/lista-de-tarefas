@@ -1,0 +1,5 @@
+const form = document.querySelector("form-tarefa")
+const campo = document.querySelector("campo-tarefa")
+const mensagem = document.querySelector("mensagem")
+const lista = document.querySelector("lista")
+const contador = document.querySelector("contador")
