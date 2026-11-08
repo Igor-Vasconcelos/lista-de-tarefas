@@ -37,7 +37,7 @@ function marcarFeita(item, feita) {
 function removerTarefa(item) {
   item.classList.add("saindo");
   setTimeout(() => {
-    item.remover();
+    item.remove();
     atualizarContador();
   }, 300);
 }
