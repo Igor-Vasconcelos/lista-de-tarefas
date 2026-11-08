@@ -1,8 +1,8 @@
-const form = document.querySelector("form-tarefa");
-const campo = document.querySelector("campo-tarefa");
-const mensagem = document.querySelector("mensagem");
-const lista = document.querySelector("lista");
-const contador = document.querySelector("contador");
+const form = document.querySelector("#form-tarefa");
+const campo = document.querySelector("#campo-tarefa");
+const mensagem = document.querySelector("#mensagem");
+const lista = document.querySelector("#lista");
+const contador = document.querySelector("#contador");
 
 function criarTarefa(texto) {
   const item = criarElemento("li", "list-group-item d-flex gap-2 tarefa");
@@ -23,6 +23,13 @@ function criarTarefa(texto) {
   return item;
 }
 
+function criarElemento(tag, classes, texto = "") {
+  const elemento = document.createElement(tag);
+  elemento.className = classes;
+  elemento.textContent = texto;
+  return elemento;
+}
+
 function marcarFeita(item, feita) {
   item.classList.toggle("feita", feita);
   atualizarContador();
@@ -37,7 +44,7 @@ function removerTarefa(item) {
 
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
-  const texto = campo.ariaValueMax.trim();
+  const texto = campo.value.trim();
 
   if (texto === "") {
     mensagem.textContent = "Digite uma tarefa antes de adicionar.";
@@ -46,7 +53,7 @@ form.addEventListener("submit", (evento) => {
   }
   mensagem.textContent = "";
 
-  lista.append(criartarefa(texto));
+  lista.append(criarTarefa(texto));
   form.reset();
   campo.focus();
   atualizarContador();
